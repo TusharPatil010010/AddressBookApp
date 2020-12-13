@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 public class ContactDTO {
 
 	@NotEmpty(message = "ID cannot be empty")
-	public Long id;
+	public int id;
 	public String firstName;
 	public String lastName;
 	public String address;
