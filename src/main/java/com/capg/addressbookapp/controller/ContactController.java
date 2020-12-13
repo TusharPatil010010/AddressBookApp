@@ -3,6 +3,8 @@ package com.capg.addressbookapp.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +20,14 @@ public class ContactController {
 
 	List<Contact> contacts = new ArrayList<>();
 	
+	@GetMapping("/contacts")
+	public ResponseEntity<List<Contact>> getAllContacts() {
+		return new ResponseEntity<>(contacts, HttpStatus.OK);
+	}
+	
 	@GetMapping("/contact/{id}")
-	public Contact getContact(@PathVariable int id) {
-			return contacts.get(id);
+	public ResponseEntity<Contact> getContact(@PathVariable int id) {
+			return new ResponseEntity<>(contacts.get(id), HttpStatus.OK);
 		}
 	
 	@PostMapping("/contact")
