@@ -1,5 +1,7 @@
 package com.capg.addressbookapp.model;
 
+import com.capg.addressbookapp.dto.ContactDTO;
+
 import lombok.Data;
 
 public @Data class Contact {
@@ -14,18 +16,17 @@ public @Data class Contact {
 	private long phoneNumber;
 	private String email;
 	
-	public Contact(Long id, String firstName, String lastName, String address, String city, String state, String zip,
-			long phoneNumber, String email) {
+	public Contact(ContactDTO contactdto) {
 		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
+		this.id = contactdto.id;
+		this.firstName = contactdto.firstName;
+		this.lastName = contactdto.lastName;
+		this.address = contactdto.address;
+		this.city = contactdto.city;
+		this.state = contactdto.state;
+		this.zip = contactdto.zip;
+		this.phoneNumber = contactdto.phoneNumber;
+		this.email = contactdto.email;
 	}
 	
 }

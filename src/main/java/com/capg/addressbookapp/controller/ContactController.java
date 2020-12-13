@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capg.addressbookapp.dto.ContactDTO;
 import com.capg.addressbookapp.model.Contact;
 
 @RestController
@@ -27,16 +28,18 @@ public class ContactController {
 	
 	@GetMapping("/contact/{id}")
 	public ResponseEntity<Contact> getContact(@PathVariable int id) {
-			return new ResponseEntity<>(contacts.get(id), HttpStatus.OK);
-		}
+		return new ResponseEntity<>(contacts.get(id), HttpStatus.OK);
+	}
 	
 	@PostMapping("/contact")
-	public void addContact(@RequestBody Contact contact) {
+	public void addContact(@RequestBody ContactDTO contactdto) {
+		Contact contact = new Contact(contactdto);
 		contacts.add(contact);
 	}
 	
 	@PutMapping("/contact/{id}")
-	public void updateContact(@PathVariable Long id, @RequestBody Contact contact) {
+	public void updateContact(@PathVariable Long id, @RequestBody ContactDTO contactdto) {
+		Contact contact = new Contact(contactdto);
 		contacts.stream().filter(c -> c.getId().equals(id)).findFirst();
 	}
 	
